@@ -5,8 +5,8 @@ import Footer from '../components/Footer'
 
 const Home = () => {
   return (
-    <main className="flex-col w-full hv-full">
-      <section className='flex flex-col w-full justify-center items-center lg:flex-row gap-4 lg:gap-0'>
+    <main className="flex-col w-full h-screen relative">
+      <section className='flex flex-col w-full justify-center lg:flex-row gap-4 lg:gap-0'>
         {/* TODO: MENU NAV*/}
         {/* TODO: HERO BANNER */}
         {/* Hero Card Gamer */}
@@ -14,7 +14,7 @@ const Home = () => {
           <HeroCardGame key={index} title={item.title} image={item.image} />
         ))}
       </section>
-      <Footer className=""></Footer>
+      <Footer />
     </main>
   );
 }
