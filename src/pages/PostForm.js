@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import HeroCardGame from '../components/Games/HeroCardGame'
-import dataHeroGames from '../utils/data.hero.images'
-import Footer from '../components/Footer'
+import React, { useState } from 'react';
+import PostFormHeader from '../components/PostForm/PostFormHeader';
+import FormInput from '../components/PostForm/FormInput';
+import FormTextarea from '../components/PostForm/FormTextarea';
+import FormButton from '../components/PostForm/FormButton';
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 import ProductFilter from '../components/Products/ProductFilter';
 import ProductGrid from '../components/Products/ProductGrid';
 import ProductPagination from '../components/Products/ProductPagination';
-import FeaturedProductBanner from '../components/FeaturedProductBanner';
 
 const products = [
   { id: 1, image: '../assets/images/outriders-ps4.webp', name: 'Outriders', price: '40' },
@@ -18,20 +19,16 @@ const products = [
   // El resto estará en el backend
 ];
 
-const Home = () => {
+const PostForm = () => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  const featuredProduct = {
-    image: '../assets/images/mortalkombat_banner.webp',
-    title: 'MORTAL KOMBAT',
-    price: 'R$ 299,99',
-    description: 'Mortal Kombat X combina una apariencia cinematográfica única con una jugabilidad totalmente nueva. Los jugadores pueden elegir entre peleas uno a uno o variantes de cada personaje, afectando el estilo de lucha.'
-  };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -44,31 +41,36 @@ const Home = () => {
     setCurrentPage(1);
   };
 
-  return (
-    <main className="flex-col w-full h-screen relative">
-      <Nav />
-      <FeaturedProductBanner 
-        image={featuredProduct.image} 
-        title={featuredProduct.title} 
-        price={featuredProduct.price} 
-        description={featuredProduct.description} 
-      />
-      <section className='flex flex-col w-full justify-center lg:flex-row gap-4 lg:gap-0'>
-        {dataHeroGames.map((item, index) => (
-          <HeroCardGame key={index} title={item.title} image={item.image} />
-        ))}
-      </section>
-      <div className="container mx-auto p-4 min-h-screen">
-        <ProductFilter onFilter={handleFilter} />
-        <ProductGrid products={currentProducts} />
-        <ProductPagination 
-          currentPage={currentPage} 
-          totalPages={Math.ceil(filteredProducts.length / productsPerPage)} 
-          onPaginate={paginate}
-      /></div>
-      <Footer />
-    </main>
-  );
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Post enviado: ${title} - ${content}`);
+    setTitle('');
+    setContent('');
+  };
 
-export default Home
+  return (
+    <post>
+      <Nav />
+    <div className="p-4 min-h-screen">
+      <PostFormHeader />
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <FormInput label="Título" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <FormTextarea label="Contenido" value={content} onChange={(e) => setContent(e.target.value)} rows="5" required />
+        <FormButton onClick={handleSubmit}>Publicar</FormButton>
+      </form>
+      <div className="container mx-auto p-4 min-h-screen">
+      <ProductFilter onFilter={handleFilter} />
+      <ProductGrid products={currentProducts} />
+      <ProductPagination 
+        currentPage={currentPage} 
+        totalPages={Math.ceil(filteredProducts.length / productsPerPage)} 
+        onPaginate={paginate}
+      />
+    </div>
+    </div>
+      <Footer/>
+    </post>
+  );
+};
+
+export default PostForm;

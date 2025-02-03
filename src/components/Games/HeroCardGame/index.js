@@ -9,7 +9,6 @@ const HeroCardGame = ({title, image}) => {
         <hr className="border-aquaDark w-1/3" />
       </div>
     </div>
-  );
-}
+);}
 
 export default HeroCardGame
