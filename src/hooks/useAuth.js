@@ -18,7 +18,7 @@ const useAuth = () => {
 
   return {
     ...context,
-    logout: logoutWithRedirect
+    logout: logoutWithRedirect,
   };
 };
 

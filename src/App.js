@@ -1,7 +1,8 @@
 import React from 'react';
 import { AuthProvider } from './context/AuthContext';
-import { Route, Routes } from 'react-router-dom';
-import Home from "./pages/Home";
+import { Route, Routes, Navigate } from 'react-router-dom';
+import useAuth from './hooks/useAuth';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PostForm from './pages/PostForm';
@@ -12,21 +13,45 @@ import Products from './pages/Products';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Componente para proteger rutas
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) return <div className="bg-black min-h-screen text-white flex items-center justify-center">Cargando...</div>;
+  return user ? children : <Navigate to="/login" replace />;
+};
+
 function App() {
- return(
-  <AuthProvider>
-   <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/post" element={<PostForm />} />
-    <Route path="/products" element={<Products />} />
-    <Route path="/profile" element={<UserProfile />} />
-    <Route path="/product/:productId" element={<ProductDetail />} />
-    <Route path="/cart" element={<ShoppingCart />} />  
-   </Routes>
-   <ToastContainer />
-  </AuthProvider>
-)}
+  return (
+    <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route
+            path="/post"
+            element={
+              <ProtectedRoute>
+                <PostForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <ToastContainer />
+    </AuthProvider>
+  );
+}
 
 export default App;

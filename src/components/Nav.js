@@ -1,10 +1,11 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
-import logo from '../assets/images/logogamerstore.svg'
+import logo from '../assets/images/logogamerstore.svg';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
-  const { isLoggedIn, user, logout } = useAuth();
+  const { user, logout } = useAuth();
+  const isLoggedIn = !!user; // Deriva isLoggedIn de la existencia de user
 
   return (
     <nav className="bg-black p-4">
@@ -17,7 +18,7 @@ const Nav = () => {
           <div className="h-6 border-r border-white"></div>
           {isLoggedIn && <a href="/post" className="text-white hover:text-gray-300">Publicaciones</a>}
           {isLoggedIn && <div className="h-6 border-r border-white"></div>}
-          {isLoggedIn && user && (
+          {isLoggedIn && (
             <>
               <Link to="/profile" className="text-white hover:text-gray-300">Perfil</Link>
               <div className="h-6 border-r border-white"></div>
