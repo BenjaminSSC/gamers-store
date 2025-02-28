@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://gamers-store-api.netlify.app/';
+const API_URL = 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -65,7 +65,8 @@ export const getProductById = async (id) => {
 export const getProducts = async () => {
   try {
     const response = await api.get('/products');
-    return response.data;
+    console.log(response.data)
+    // return response.data;
   } catch (error) {
     throw error.response?.data || { error: 'Error al obtener productos' };
   }
