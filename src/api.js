@@ -65,8 +65,7 @@ export const getProductById = async (id) => {
 export const getProducts = async () => {
   try {
     const response = await api.get('/products');
-    console.log(response.data)
-    // return response.data;
+    return response.data;
   } catch (error) {
     throw error.response?.data || { error: 'Error al obtener productos' };
   }
