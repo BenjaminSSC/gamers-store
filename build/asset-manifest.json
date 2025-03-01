@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.93280f78.css",
-    "main.js": "/static/js/main.b62ad28e.js",
+    "main.js": "/static/js/main.620e5bba.js",
     "static/js/453.f52faf95.chunk.js": "/static/js/453.f52faf95.chunk.js",
     "static/media/logogamerstore.svg": "/static/media/logogamerstore.f4f112b556f5df341f1f8062e7876aea.svg",
     "static/media/sekiro_banner.webp": "/static/media/sekiro_banner.e2bc53b588cdc0d40837.webp",
@@ -10,11 +10,11 @@
     "static/media/profile.webp": "/static/media/profile.ddcd8e4a9481936dbffb.webp",
     "index.html": "/index.html",
     "main.93280f78.css.map": "/static/css/main.93280f78.css.map",
-    "main.b62ad28e.js.map": "/static/js/main.b62ad28e.js.map",
+    "main.620e5bba.js.map": "/static/js/main.620e5bba.js.map",
     "453.f52faf95.chunk.js.map": "/static/js/453.f52faf95.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.93280f78.css",
-    "static/js/main.b62ad28e.js"
+    "static/js/main.620e5bba.js"
   ]
 }
