@@ -8,7 +8,7 @@ const ProductGrid = ({ products }) => {
       {products.map((product) => (
         <Link key={product.id} to={`/product/${product.id}`}>
           <Article
-            image={product.imageUrl || '/images/sekiro-ps4.webp'}
+            image={product.imageurl || '/images/sekiro-ps4.webp'}
             name={product.name}
             precio={parseFloat(product.price).toFixed(2)}
           />
