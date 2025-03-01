@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://backproyectogames-production-f162.up.railway.app/api'; 
 
 const api = axios.create({
   baseURL: API_URL,
@@ -65,8 +65,7 @@ export const getProductById = async (id) => {
 export const getProducts = async () => {
   try {
     const response = await api.get('/products');
-    console.log(response.data)
-    // return response.data;
+    return response.data;
   } catch (error) {
     throw error.response?.data || { error: 'Error al obtener productos' };
   }
