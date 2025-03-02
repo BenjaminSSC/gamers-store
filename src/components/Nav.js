@@ -14,7 +14,7 @@ const Nav = () => {
           <img src={logo} alt="Logo Gamer Store" className="w-32" />
         </a>
         <div className="flex space-x-4">
-          <Link href="/products" className="text-white hover:text-gray-300">Productos</Link>
+          <Link to="/products" className="text-white hover:text-gray-300">Productos</Link>
           <div className="h-6 border-r border-white"></div>
           {isLoggedIn && <a href="/post" className="text-white hover:text-gray-300">Publicaciones</a>}
           {isLoggedIn && <div className="h-6 border-r border-white"></div>}
@@ -34,7 +34,7 @@ const Nav = () => {
             </button>
           )}
           <div className="h-6 border-r border-white"></div>
-          <Link href="/cart" className="text-white hover:text-gray-300">Carrito</Link>
+          <Link to="/cart" className="text-white hover:text-gray-300">Carrito</Link>
         </div>
       </div>
     </nav>
