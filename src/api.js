@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://backproyectogames-production-f162.up.railway.app/api'; 
+const API_URL = 'https://backproyectogames-production-f162.up.railway.app/api' //'http://localhost:5000/api';  
 
 const api = axios.create({
   baseURL: API_URL,
@@ -76,6 +76,19 @@ export const setAuthToken = (token) => {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   } else {
     delete api.defaults.headers.common['Authorization'];
+  }
+};
+
+export const verifyToken = async () => {
+  try {
+    const response = await api.get('/verify-token', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { error: 'Error al verificar el token' };
   }
 };
 
