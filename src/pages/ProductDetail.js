@@ -32,7 +32,8 @@ const ProductDetail = () => {
   if (loading) return <div className="bg-black min-h-screen text-white">Cargando producto...</div>;
   if (!product) return <div className="bg-black min-h-screen text-white">Producto no encontrado</div>;
 
-  const imageUrl = product.imageUrl || `/images/logogamerstore.webp`;
+  const imageUrl = product.imageUrl.startsWith('http') 
+  ? product.imageurl : `${product.imageUrl}`;
   const videoUrl = product.videoUrl || null;
 
   return (

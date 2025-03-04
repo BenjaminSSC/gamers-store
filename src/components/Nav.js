@@ -5,18 +5,20 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   const { user, logout } = useAuth();
-  const isLoggedIn = !!user; // Deriva isLoggedIn de la existencia de user
+  const isLoggedIn = !!user;
 
   return (
     <nav className="bg-black p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <a href="/">
+        <Link to="/">
           <img src={logo} alt="Logo Gamer Store" className="w-32" />
-        </a>
+        </Link>
         <div className="flex space-x-4">
           <Link to="/products" className="text-white hover:text-gray-300">Productos</Link>
           <div className="h-6 border-r border-white"></div>
-          {isLoggedIn && <a href="/post" className="text-white hover:text-gray-300">Publicaciones</a>}
+          {isLoggedIn && (
+            <Link to="/post" className="text-white hover:text-gray-300">Publicaciones</Link> // Cambiado de <a> a <Link>
+          )}
           {isLoggedIn && <div className="h-6 border-r border-white"></div>}
           {isLoggedIn && (
             <>
