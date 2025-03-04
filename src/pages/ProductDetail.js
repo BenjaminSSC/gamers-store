@@ -46,7 +46,7 @@ const ProductDetail = () => {
           <ProductInfo
           name={product.name}
           description={product.description}
-          precio={parseFloat(product.price).toFixed(2)}
+          price={product.price}
           category={product.category || 'Acción'}
           format={product.format || 'Físico'}
           developer={product.developer || 'Desconocido'}
