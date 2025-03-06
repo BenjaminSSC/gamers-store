@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Añadimos esta importación
+import { Link } from 'react-router-dom';
 
-const Article = ({ id, image, name, precio }) => { // Añadimos id como prop
+const Article = ({ id, image, name, precio }) => {
   return (
     <article className="w-[366.28px] my-5 flex flex-col items-end bg-white rounded-lg shadow-lg ">
       <div className="w-full transition-all hover:brightness-90 duration-500">

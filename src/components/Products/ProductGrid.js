@@ -25,7 +25,7 @@ const ProductGrid = ({ products }) => {
   const getImageUrl = (imageurl) => {
     console.log('imageurl recibido:', imageurl); // Depuración
     if (imageurl && imageurl.startsWith('/uploads/')) {
-      return `http://localhost:5000${imageurl}`;
+      return `https://gamers-site.netlify.app${imageurl}`;
     }
     return imageurl || '/images/sekiro-ps4.webp';
   };
