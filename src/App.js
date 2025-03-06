@@ -14,7 +14,6 @@ import Products from './pages/Products';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Componente para proteger rutas
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
