@@ -33,7 +33,7 @@ const ProductDetail = () => {
   if (!product) return <div className="bg-black min-h-screen text-white">Producto no encontrado</div>;
 
   const imageUrl = product.imageurl && product.imageurl.startsWith('/uploads/')
-    ? `https://gamers-site.netlify.app${product.imageurl}`
+    ? `https://backproyectogames-production-f162.up.railway.app${product.imageurl}`
     : product.imageurl || '/images/sekiro-ps4.webp';
 
   const videoUrl = product.videourl || null;
