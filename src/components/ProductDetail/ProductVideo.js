@@ -6,17 +6,15 @@ const ProductVideo = ({ videoUrl, videoTitle }) => {
   }
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 flex justify-center">
       <iframe
-        width="100%"
         height="600"
         src={videoUrl}
         title={videoTitle}
-        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
-        className="w-full"
+        className="w-full max-w-[1000px]"
       ></iframe>
     </div>
   );

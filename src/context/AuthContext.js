@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import { register, login, setAuthToken, verifyToken } from '../api';
 
 export const AuthContext = createContext();
@@ -8,16 +8,15 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [loading, setLoading] = useState(true);
 
-  // Verificar el token al cargar la aplicación
   useEffect(() => {
     const verifyStoredToken = async () => {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
         try {
           setAuthToken(storedToken);
-          const userData = await verifyToken(); // Ahora está importado correctamente
+          const userData = await verifyToken();
           setToken(storedToken);
-          setUser(userData); // Establece los datos del usuario desde el backend
+          setUser(userData);
         } catch (error) {
           console.error('Error verifying token:', error);
           setToken(null);
@@ -31,7 +30,6 @@ export const AuthProvider = ({ children }) => {
     verifyStoredToken();
   }, []);
 
-  // Configurar el token en axios cuando cambia
   useEffect(() => {
     if (token) {
       setAuthToken(token);
@@ -42,7 +40,6 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  // Función para registrar un usuario
   const registerUser = async (username, password) => {
     try {
       const data = await register(username, password);
@@ -54,7 +51,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Función para iniciar sesión
   const loginUser = async (username, password) => {
     try {
       const data = await login(username, password);
@@ -69,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem('token'); // Aseguramos que el token se elimine al cerrar sesión
+    localStorage.removeItem('token');
   };
 
   return (
@@ -87,3 +83,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);

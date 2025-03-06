@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getProducts } from '../api'; // Importamos la función del backend
+import { getProducts } from '../api';
 import { toast } from 'react-toastify';
 import HeroCardGame from '../components/Games/HeroCardGame';
 import dataHeroGames from '../utils/data.hero.images';
@@ -11,13 +11,12 @@ import ProductPagination from '../components/Products/ProductPagination';
 import FeaturedProductBanner from '../components/FeaturedProductBanner';
 
 const Home = () => {
-  const [products, setProducts] = useState([]); // Estado para productos del backend
+  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const productsPerPage = 6;
 
-  // Fetch de productos del backend
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -68,8 +67,13 @@ const Home = () => {
         description={featuredProduct.description} 
       />
       <section className='flex flex-col w-full justify-center lg:flex-row gap-4 lg:gap-0'>
-        {dataHeroGames.map((item, index) => (
-          <HeroCardGame key={index} title={item.title} image={item.image} />
+        {dataHeroGames.map((item) => (
+          <HeroCardGame 
+            key={item.id}
+            title={item.title} 
+            image={item.image} 
+            id={item.id}
+          />
         ))}
       </section>
       <div className="container mx-auto p-4 min-h-screen">
@@ -84,6 +88,6 @@ const Home = () => {
       <Footer />
     </main>
   );
-}
+};
 
 export default Home;

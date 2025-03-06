@@ -32,28 +32,30 @@ const ProductDetail = () => {
   if (loading) return <div className="bg-black min-h-screen text-white">Cargando producto...</div>;
   if (!product) return <div className="bg-black min-h-screen text-white">Producto no encontrado</div>;
 
-  const imageUrl = product.imageUrl.startsWith('http') 
-  ? product.imageurl : `${product.imageUrl}`;
-  const videoUrl = product.videoUrl || null;
+  const imageUrl = product.imageurl && product.imageurl.startsWith('/uploads/')
+    ? `https://gamers-site.netlify.app${product.imageurl}`
+    : product.imageurl || '/images/sekiro-ps4.webp';
+
+  const videoUrl = product.videourl || null;
 
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-black text-white">
       <Nav />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto pt-20 p-4 min-h-screen">
         <ProductDetailHeader />
         <div className="flex flex-col lg:flex-row">
           <ProductImage imageUrl={imageUrl} alt={product.name} />
           <ProductInfo
-          name={product.name}
-          description={product.description}
-          price={product.price}
-          category={product.category || 'Acción'}
-          format={product.format || 'Físico'}
-          developer={product.developer || 'Desconocido'}
-          platforms={product.platforms} // Pasa la lista completa en lugar de una cadena
-        />
+            name={product.name}
+            description={product.description}
+            price={product.price}
+            category={product.category || 'Desconocido'}
+            format={product.format || 'Desconocido'}
+            developer={product.developer || 'Desconocido'}
+            platforms={product.platforms}
+          />
         </div>
-        <ProductVideo videoUrl={videoUrl} videoTitle={product.name} />
+        {videoUrl && <ProductVideo videoUrl={videoUrl} videoTitle={product.name} />}
       </div>
       <Footer />
     </div>
