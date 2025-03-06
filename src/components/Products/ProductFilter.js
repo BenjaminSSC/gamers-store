@@ -7,7 +7,7 @@ const ProductFilter = ({ onFilter }) => {
         type="text" 
         placeholder="Buscar productos..." 
         onChange={onFilter}
-        className="p-2 border rounded w-full md:w-1/2 lg:w-1/3"
+        className="p-2 border text-black rounded w-full md:w-1/2 lg:w-1/3"
       />
     </div>
   );

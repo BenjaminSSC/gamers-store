@@ -48,9 +48,9 @@ const Products = () => {
   if (loading) return <div className="bg-black min-h-screen text-white flex items-center justify-center">Cargando productos...</div>;
 
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-white text-white ">
       <Nav />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto pt-24 p-4 min-h-screen">
         <ProductFilter onFilter={handleFilter} />
         <ProductGrid products={currentProducts} />
         <ProductPagination

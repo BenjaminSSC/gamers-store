@@ -2,7 +2,7 @@ import React from 'react';
 
 const PostFormHeader = () => {
   return (
-    <h1 className="text-2xl mb-4">Publicar Nuevo Post</h1>
+    <h1 className="text-2xl mb-4 text-white">Publica Tu Juego!</h1>
   );
 };
 
