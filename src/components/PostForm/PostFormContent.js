@@ -40,7 +40,7 @@ const PostFormContent = ({ onProductCreated }) => {
     if (imageFile) formData.append('image', imageFile);
 
     try {
-      const response = await fetch('https://gamers-site.netlify.app/api/products', {
+      const response = await fetch('https://backproyectogames-production-f162.up.railway.app/api/products', { 
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

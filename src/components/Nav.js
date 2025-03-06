@@ -1,4 +1,3 @@
-// src/components/Nav.js
 import React from 'react';
 import useAuth from '../hooks/useAuth';
 import { useCart } from '../context/CartContext';
