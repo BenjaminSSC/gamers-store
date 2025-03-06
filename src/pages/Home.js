@@ -55,10 +55,14 @@ const Home = () => {
     setCurrentPage(1);
   };
 
-  if (loading) return <div className="bg-black min-h-screen text-white flex items-center justify-center">Cargando productos...</div>;
+  if (loading) return (
+    <div className="bg-black min-h-screen text-white flex items-center justify-center">
+      Cargando productos...
+    </div>
+  );
 
   return (
-    <main className="flex-col w-full h-screen relative">
+    <main className="flex flex-col w-full min-h-screen relative bg-white text-black">
       <Nav />
       <FeaturedProductBanner 
         image={featuredProduct.image} 
@@ -66,7 +70,7 @@ const Home = () => {
         price={featuredProduct.price} 
         description={featuredProduct.description} 
       />
-      <section className='flex flex-col w-full justify-center lg:flex-row gap-4 lg:gap-0'>
+      <section className="flex flex-col w-full justify-center items-center gap-4 p-4 md:flex-row md:gap-6">
         {dataHeroGames.map((item) => (
           <HeroCardGame 
             key={item.id}
@@ -76,7 +80,7 @@ const Home = () => {
           />
         ))}
       </section>
-      <div className="container mx-auto p-4 min-h-screen">
+      <div className="container mx-auto p-4">
         <ProductFilter onFilter={handleFilter} />
         <ProductGrid products={currentProducts} />
         <ProductPagination 

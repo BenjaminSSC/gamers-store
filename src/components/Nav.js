@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useCart } from '../context/CartContext';
 import logo from '../assets/images/logogamerstore.svg';
 import { Link } from 'react-router-dom';
-import { FaPen, FaShoppingCart, FaSignInAlt, FaSignOutAlt, FaBox, FaUser } from 'react-icons/fa';
+import { FaPen, FaShoppingCart, FaSignInAlt, FaSignOutAlt, FaBox, FaUser, FaBars, FaTimes } from 'react-icons/fa';
 
 const Nav = () => {
   const { user, logout } = useAuth();
   const { cart } = useCart();
   const isLoggedIn = !!user;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <nav className="bg-black p-4 fixed z-50 w-full">
@@ -18,36 +21,69 @@ const Nav = () => {
         <Link to="/">
           <img src={logo} alt="Logo Gamer Store" className="w-32" />
         </Link>
-        <div className="flex space-x-4 items-center">
-          <Link to="/products" className="text-white hover:text-gray-300 flex items-center">
+        <button 
+          className="md:hidden text-white focus:outline-none" 
+          onClick={toggleMenu}
+        >
+          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
+        <div 
+          className={`${
+            isMenuOpen ? 'flex' : 'hidden'
+          } md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center absolute md:static top-16 left-0 w-full md:w-auto bg-black md:bg-transparent p-4 md:p-0 transition-all duration-300`}
+        >
+          <Link 
+            to="/products" 
+            className="text-white hover:text-gray-300 flex items-center" 
+            onClick={() => setIsMenuOpen(false)}
+          >
             <FaBox className="mr-2" /> Productos
           </Link>
-          <div className="h-6 border-r border-white"></div>
+          <div className="h-6 border-r border-white md:block hidden"></div>
           {isLoggedIn && (
-            <Link to="/post" className="text-white hover:text-gray-300 flex items-center">
+            <Link 
+              to="/post" 
+              className="text-white hover:text-gray-300 flex items-center" 
+              onClick={() => setIsMenuOpen(false)}
+            >
               <FaPen className="mr-2" /> Publicaciones
             </Link>
           )}
-          {isLoggedIn && <div className="h-6 border-r border-white"></div>}
+          {isLoggedIn && <div className="h-6 border-r border-white md:block hidden"></div>}
           {isLoggedIn && (
             <>
-              <Link to="/profile" className="text-white hover:text-gray-300 flex items-center">
+              <Link 
+                to="/profile" 
+                className="text-white hover:text-gray-300 flex items-center" 
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <FaUser className="mr-2" /> Perfil
               </Link>
-              <div className="h-6 border-r border-white"></div>
+              <div className="h-6 border-r border-white md:block hidden"></div>
             </>
           )}
           {isLoggedIn ? (
-            <button onClick={logout} className="text-white hover:text-gray-300 flex items-center">
+            <button 
+              onClick={() => { logout(); setIsMenuOpen(false); }} 
+              className="text-white hover:text-gray-300 flex items-center"
+            >
               <FaSignOutAlt className="mr-2" /> Cerrar Sesión
             </button>
           ) : (
-            <Link to="/login" className="text-white hover:text-gray-300 flex items-center">
+            <Link 
+              to="/login" 
+              className="text-white hover:text-gray-300 flex items-center" 
+              onClick={() => setIsMenuOpen(false)}
+            >
               <FaSignInAlt className="mr-2" /> Iniciar Sesión
             </Link>
           )}
-          <div className="h-6 border-r border-white"></div>
-          <Link to="/cart" className="text-white hover:text-gray-300 flex items-center relative">
+          <div className="h-6 border-r border-white md:block hidden"></div>
+          <Link 
+            to="/cart" 
+            className="text-white hover:text-gray-300 flex items-center relative" 
+            onClick={() => setIsMenuOpen(false)}
+          >
             <FaShoppingCart className="mr-2" />
             Carrito
             {cartItemCount > 0 && (

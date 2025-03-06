@@ -1,4 +1,3 @@
-// src/components/PostForm/PostFormContent.js
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import PostFormHeader from './PostFormHeader';

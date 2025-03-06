@@ -1,4 +1,3 @@
-// src/PostForm.js
 import React, { useState, useEffect } from 'react';
 import { getProducts } from '../api';
 import Nav from '../components/Nav';
